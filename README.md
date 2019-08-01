@@ -1,2 +1,3 @@
 # popgen19
- Lecture and exercise for PHD summercourse
+Lecture and practicals for PHD summercourse
+
