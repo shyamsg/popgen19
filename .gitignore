@@ -1,8 +1,0 @@
-ignore/
-.Rhistory
-.Rapp.history
-.RData
-.Ruserdata
-papers/*.pdf
-.DS_store
-
