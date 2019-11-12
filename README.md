@@ -1,5 +1,5 @@
-# popgen19
-Lecture and practicals for PHD summercourse
+# Genomes and Biodiversity 2019: Workshop on Genome-wide Association Studies
+Lecture and practical guide for the genomes and biodiversity GWAS workshop on 21 Nov 2019.
 
 * Slides (including practical 1) can be found in
 	* GWAS_lecture_popgen19.pdf
