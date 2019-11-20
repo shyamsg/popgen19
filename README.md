@@ -116,21 +116,21 @@ Using this threshold, does any of the SNPs in your dataset seem to be associated
 Do your results seem plausible? Why/why not?
 
 
-## Exercise 2B: checking if it went OK using QQ-plot
+## Exercise B: checking if it went OK using QQ-plot
 
-Now look at the QQ-plot that you already generated in exercise 2A (the file called plink.assoc.QQ.png) by typing:
+Now look at the QQ-plot that you already generated in exercise A (the file called plink.assoc.QQ.png) by typing:
 ```
 eog plink.assoc.logistic.QQ.png
 ```
 Here the red line is the x=y line. What does this plot suggest and why?
 
-## Exercise 2C: doing initial QC of data part 1 (sex check)
+## Exercise C: doing initial QC of data part 1 (sex check)
 
 As you can see a lot can go wrong if you do not check the quality of your data! So if you want meaningful/useful output before doing the actual testing you always have to run a lot of QC before running the association tests.
 
-One check that is worth running is a check if the indicated genders are correct. You can check this using PLINK2 to calculate the inbreeding coefficient on the X chromosome under the assumption that it is an autosomal chromosome.
+One check that is worth running is a check if the indicated genders are correct. You can check this using PLINK2 to calculate the inbreeding coefficient on the X chromosome under the assumption that it is an autosomal chromosome. What would the inbreeding coefficient for males be?
 
-The reason why this is interesting is that, for technical reasons PLINK2 represents haploid chromosomes, such as X for males, as homozygotes. So assuming the X is an autosomal chromosome will make the males look very inbred on the X where as the woman wont (since they are diploid on the X chromosome). This means that the inbreeding coefficient estimates you get will be close to 1 for men and close to 0 for women.
+The reason why this is interesting is that, for technical reasons PLINK2 represents haploid chromosomes, such as X for males, as homozygotes. So assuming the X is an autosomal chromosome will make the males look very inbred on the X whereas the females will not (since they are diploid on the X chromosome). This means that the inbreeding coefficient estimates you get will be close to 1 for men and close to 0 for women.
 
 This gender check can be performed in PLINK2 using the following command:
 ```
@@ -146,11 +146,13 @@ NB you can use arrows to navigate up and down in the file and close the file vie
 ```
 grep PROBLEM plink.sexcheck
 ```
-If you observe any problems then fix them by changing the gender in the file gwa.fam (5th colunm) (NB usually one would instead get rid of these individuals because wrong gender could indicate that the phenotypes you have do not belong to the genotyped individual. However, in this case the genders were changed on purpose for the sake of this exercises so you can safely just change them back)
+Usually one would get rid of these individuals because wrong gender. Why?
 
-## Exercise 2D: doing initial QC of data part 2 (relatedness check)
+In this case the genders were changed on purpose for the sake of this exercises so we need not worry about it.
 
-Another potential problem in association studies is spurious relatedness, where some of the individuals in the sample are closely related.
+## Exercise D: doing initial QC of data part 2 (relatedness check)
+
+Another potential problem in association studies is relatedness, where some of the individuals in the sample are closely related.
 
 Closely related individuals can be inferred using PLINK2 as follows:
 ```
@@ -162,7 +164,7 @@ Rscript data/plink.plot.R plink.genome
 ```
 Do that and then take a look at the result by typing
 ```
-eog plink.genomepairwise_relatedness_1.png
+eog plink.genomepairwise_relatedness_1.jpg
 ```
 The figure shows estimates of the relatedness for all pairs of individuals.
 
