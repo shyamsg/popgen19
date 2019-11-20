@@ -13,22 +13,24 @@ For a detailed description of this program click [here (original program)](http:
 The exercise will be carried out on a linux server, on the terminal.
 
 ## Step 1: Login to the servers
-To log onto the server, use the username and password chit you got at the start of the workshop.
+To log onto the server, use the username/password chit you got at the start of the workshop.
 The server we will use is called ricco.popgen.dk. To log onto it, follow the steps below.
 
-###MAC/Linux
+### MAC/Linux
 Open the terminal, and use these commands - replace `<username>` with the username on the chit.
 ```bash
 ssh -X <username>@ricco.popgen.dk
 ```
 You will be prompted for a password - use the password on the chit. Note that both username and password are case sensitive.
 
-###Windows
+### Windows
 You should have already installed the MobaXterm program. (or for the more old-school people, PuTTY).
 In MobaXterm, start a new ssh session by clicking on the ssh buttion in the menu bar. Again, the servers
 is ricco.popgen.dk, and the username/password combination is on the chit you got.
 
-## Preparation - downloading the data
+After login, you should be at the command prompt in your home directory on the server.
+
+## Preparation - getting the data ready for use
 
 First, let us make a folder called gwasEx for this exercise by typing
 ```
@@ -38,14 +40,13 @@ mkdir gwasEx
 Go into this folder, copy over a packed version of the data that we will be analyzing today and unpack it. You can do this by typing:
 ```
 cd gwasEx
-cp /home/ida/popgen19/practical2data.tar.gz .
-tar -xf practical2data.tar.gz
+ln -s /home/ida//teaching/gab19/data .
 ```
 List the content of the folder to see what files appeared:
 ```
 ls
 ```
-Your folder gwasEx should now contain a subfolder called data, containing the all files you will use in this exercise.
+Your folder gwasEx should now contain a (linked) subfolder called data, containing the all files you will use in this exercise.
 
 Some of the files are data files, but note that the folder also contain a file called "plink.plot.R"", which contain R code for plotting your results.
 
@@ -62,7 +63,7 @@ To make sure the GWAS analyses will run fast the main data file (gwa.bed) is in 
 
 However, PLINK2 will print summary statistics about the data (number of SNPs, number of individuals, number of cases, number of controls etc) to the screen when you run an analysis.
 
-Also, there are two additional data files, gwa.bim and gwa.fam, which are not in binary format and which contains information about the SNPs in the data and the individuals in the data, respectively
+Also, there are two additional data files, gwa.bim and gwa.fam, which are not in binary format and which contains information about the SNPs in the data and the individuals in the data, respectively.
 
 (you can read more about the data format in the manuals linked to above - but for now this is all you need to know).
 Let us check how many samples there are in our dataset.  
@@ -75,15 +76,15 @@ wc -l data/gwa.bim
 ```
 Let's try to perform a GWAS of our data, i.e. test each SNP for association with the disease.
 
-And let's try to do it using the simplest association test for case-control data, the allelic test, which you just performed in R in exercise 1B.
+And let's try to do it using a simple association test for case-control data, the logistic regression.
 
 The PLINK2 option "--bfile data/gwa"" will specify that the data PLINK2 should analyse are the files in folder called "data" with the prefix "gwa".
 
-"—assoc" specifies that we want to use perform GWAS using the allelic test
+"—logistic" specifies that we want to use perform GWAS using the logistic regression.
 
 "—adjust"" tells PLINK2 to output a file that includes p-values that are adjusted for multiple testing using Bonferroni correction as well as other fancier methods.
 
-Now perform the allelic test on all the SNPs int the dataset using PLINK2 by typing:
+Now perform the logistic regression on all the SNPs in the dataset using PLINK2 by typing:
 ```
 plink2  --bfile data/gwa --logistic --adjust
 ```
