@@ -1,12 +1,32 @@
-# Practical - Genome-Wide Association study (GWAS)
+# Genomes and Biodiversity ECMR workshop 2019
+This repository contains the information on the Genome-Wide Association Study (GWAS) workshop for GAB 19 in Sydney.
+It contains 2 parts - the lecture notes, called GAB19_GWAS.pdf and the notes to do the GWAS analysis - the practical
+step outlined here.  
 
+# Practical - Genome-Wide Association study (GWAS)
 This exercise is about Genome-Wide Association Studies (GWAS): how to perform one and some pitfalls to look out for.
 
 It will be conducted from the command line using the program PLINK2.
 
 For a detailed description of this program click [here (original program)](http://zzz.bwh.harvard.edu/plink/) and [here (version 2 of the program)](https://www.cog-genomics.org/plink/1.9/).
 
-The exercise will be carried out on a linux server.
+The exercise will be carried out on a linux server, on the terminal.
+
+## Step 1: Login to the servers
+To log onto the server, use the username and password chit you got at the start of the workshop.
+The server we will use is called ricco.popgen.dk. To log onto it, follow the steps below.
+
+###MAC/Linux
+Open the terminal, and use these commands - replace `<username>` with the username on the chit.
+```bash
+ssh -X <username>@ricco.popgen.dk
+```
+You will be prompted for a password - use the password on the chit. Note that both username and password are case sensitive.
+
+###Windows
+You should have already installed the MobaXterm program. (or for the more old-school people, PuTTY).
+In MobaXterm, start a new ssh session by clicking on the ssh buttion in the menu bar. Again, the servers
+is ricco.popgen.dk, and the username/password combination is on the chit you got.
 
 ## Preparation - downloading the data
 
