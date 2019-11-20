@@ -172,15 +172,17 @@ For each pair k1 is the proportion of the genome where the pair shares 1 of thei
 
 The expected (k1,k2) values for simple relationships are shown in the figure: MZ=monozygotic twins, PO=parent offspring, FS=full sibling, HS=half sibling, C1=first cousin (or avuncular pair), C2=cousin once removed.
 
-Are any of the individuals in your dataset closely related?
+Are any of the individuals in your dataset closely related? First, let us look at the plot.
+
+As an alternative to looking at the plot, we can check the kinship column to see if any of the pairs of individuals are closely related.
 ```
-awk '{if ($10>0.13) print $0}' plink.genome | grep -v nan | less -S
+awk '{if ($10>0.15) print $0}' plink.genome | grep -v nan | less -S
 ```
 What assumption in association studies is violated when individuals are related?
 
 And last but not least: how would you recognize if the same person is included twice (this actually happens!)
 
-## Exercise 2E: doing initial QC of data part 3 (check for batch bias/non-random genotyping error)
+## Exercise E: doing initial QC of data part 3 (check for batch bias/non-random genotyping error)
 
 Check if there is a batch effect/non random genotyping error by using missingness as a proxy (missingness and genotyping error are highly correlated in SNP chip data).
 
@@ -204,7 +206,7 @@ Is this the case?
 
 Genotyping errors are often highly correlated with missingness. How do you think this will effect your association results?
 
-## Exercise 2F: doing initial QC of data part 4 (check for batch bias/non-random genotyping error again)
+## Exercise F: doing initial QC of data part 4 (check for batch bias/non-random genotyping error again)
 
 Principal component analysis (PCA) and a very similar methods called multidimensional scaling is also often used to reveal problems in the data.
 
@@ -224,7 +226,7 @@ It shows the first two dimensions and each individual is represented by a point 
 
 Clustering of cases and controls is an indication of batch bias. Do you see such clustering? What else could explain this clustering?
 
-# Exercise 2G: try to rerun GWAS after quality filtering SNPs
+# Exercise G: try to rerun GWAS after quality filtering SNPs
 
 We can remove many of the error prone SNPs and individuals by removing
 
@@ -252,7 +254,7 @@ less assoc2.assoc.logistic.adjusted
 ```
 Are any of the SNPs associated when we correct for multiple testing in smarter ways?
 
-## Exercise 2F: another example of a GWAS caveat
+<!-- ## Exercise H: another example of a GWAS caveat
 
 For the same individuals as above we also have another phenotype. This phenotype is strongly correlated with gender. The genotyping was done independently of this phenotype so there is no batch bias. To perform association on this phenotype type
 ```
@@ -272,4 +274,4 @@ Are there any associated SNPs according to this analysis?
 
 Some of the probes used on the chip will hybridize with multiple loci on the genome. The associated SNPs in the previous analysis all crosshybridize with the X chromosome.
 
-Could crosshybridization explain the difference in results from the two analyses?
+Could crosshybridization explain the difference in results from the two analyses? -->
