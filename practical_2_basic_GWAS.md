@@ -1,26 +1,24 @@
-# Practical 2 - Genome-Wide Association study (GWAS)
+# Practical - Genome-Wide Association study (GWAS)
 
-This exercise is about Genome-Wide Association Studies (GWAS): how to perform one and some pitfalls to look out for. 
+This exercise is about Genome-Wide Association Studies (GWAS): how to perform one and some pitfalls to look out for.
 
-It will be conducted from the command line using the program PLINK2. 
+It will be conducted from the command line using the program PLINK2.
 
 For a detailed description of this program click [here (original program)](http://zzz.bwh.harvard.edu/plink/) and [here (version 2 of the program)](https://www.cog-genomics.org/plink/1.9/).
 
-The exercise will be carried out at the linux server.
+The exercise will be carried out on a linux server.
 
 ## Preparation - downloading the data
 
-First close R if you have it open (e.g. using the command "quit()"). 
-
-Then make a folder called gwasEx for this exercise by typing
+First, let us make a folder called gwasEx for this exercise by typing
 ```
 cd ~/
 mkdir gwasEx
 ```
-Go into this folder, download a packed version of the data that we will be analyzing today and unpack it. You can do this by typing:
+Go into this folder, copy over a packed version of the data that we will be analyzing today and unpack it. You can do this by typing:
 ```
 cd gwasEx
-cp /home/line/popgen19/practical2data.tar.gz .
+cp /home/ida/popgen19/practical2data.tar.gz .
 tar -xf practical2data.tar.gz
 ```
 List the content of the folder to see what files appeared:
@@ -36,27 +34,32 @@ List the content of the "data" folder:
 ls data/
 ```
 
-## Exercise 2A: running your first GWAS
+## Exercise A: running your first GWAS
 
 Briefly, the GWAS data consist of SNP genotyping data from 356 individuals some of which are have a certain disease (cases) and the rest do not (controls).
 
-To make sure the GWAS analyses will run fast the main data file (gwa.bed) is in a binary format, which is not very reader friendly. 
+To make sure the GWAS analyses will run fast the main data file (gwa.bed) is in a binary format, which is not very reader friendly.
 
 However, PLINK2 will print summary statistics about the data (number of SNPs, number of individuals, number of cases, number of controls etc) to the screen when you run an analysis.
 
-Also, there are two additional data files, gwa.bim and gwa.fam, which are not in binary format and which contains information about the SNPs in the data and the individuals in the data, respectively 
+Also, there are two additional data files, gwa.bim and gwa.fam, which are not in binary format and which contains information about the SNPs in the data and the individuals in the data, respectively
 
 (you can read more about the data format in the manuals linked to above - but for now this is all you need to know).
+Let us check how many samples there are in our dataset.  
 ```
-wc -l data/gwa.*
+wc -l data/gwa.fam
+```
+Now let us check the number of SNPs that we are using.
+```
+wc -l data/gwa.bim
 ```
 Let's try to perform a GWAS of our data, i.e. test each SNP for association with the disease.
 
-And let's try to do it using the simplest association test for case-control data, the allelic test, which you just performed in R in exercise 1B. 
+And let's try to do it using the simplest association test for case-control data, the allelic test, which you just performed in R in exercise 1B.
 
 The PLINK2 option "--bfile data/gwa"" will specify that the data PLINK2 should analyse are the files in folder called "data" with the prefix "gwa".
 
-"—assoc" specifies that we want to use perform GWAS using the allelic test 
+"—assoc" specifies that we want to use perform GWAS using the allelic test
 
 "—adjust"" tells PLINK2 to output a file that includes p-values that are adjusted for multiple testing using Bonferroni correction as well as other fancier methods.
 
@@ -120,7 +123,7 @@ less plink.sexcheck
 ```
 NB you can use arrows to navigate up and down in the file and close the file viewing by typing q.
 ```
-grep PROBLEM plink.sexcheck 
+grep PROBLEM plink.sexcheck
 ```
 If you observe any problems then fix them by changing the gender in the file gwa.fam (5th colunm) (NB usually one would instead get rid of these individuals because wrong gender could indicate that the phenotypes you have do not belong to the genotyped individual. However, in this case the genders were changed on purpose for the sake of this exercises so you can safely just change them back)
 
@@ -143,7 +146,7 @@ eog plink.genomepairwise_relatedness_1.png
 The figure shows estimates of the relatedness for all pairs of individuals.
 
 For each pair k1 is the proportion of the genome where the pair shares 1 of their allele identical-by-descent (IBD) and k2 is the proportion of the genome where the pair shares both their alleles IBD.
- 
+
 The expected (k1,k2) values for simple relationships are shown in the figure: MZ=monozygotic twins, PO=parent offspring, FS=full sibling, HS=half sibling, C1=first cousin (or avuncular pair), C2=cousin once removed.
 
 Are any of the individuals in your dataset closely related?
