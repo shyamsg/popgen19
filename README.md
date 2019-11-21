@@ -226,7 +226,7 @@ It shows the first two dimensions and each individual is represented by a point 
 
 Clustering of cases and controls is an indication of batch bias. Do you see such clustering? What else could explain this clustering?
 
-# Exercise G: try to rerun GWAS after quality filtering SNPs
+## Exercise G: try to rerun GWAS after quality filtering SNPs
 
 We can remove many of the error prone SNPs and individuals by removing
 
